@@ -12,41 +12,49 @@
         }
 
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-            height: 100vh;
+            background: linear-gradient(135deg, #f72585 0%, #7209b7 50%, #3a0ca3 100%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
             text-align: center;
             position: relative;
+            padding: 20px;
         }
 
         .container {
             position: relative;
             z-index: 10;
-            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
         }
 
         /* Die Person mit Tröte Animation */
         .party-person {
-            font-size: 100px;
-            animation: bounce 0.6s infinite alternate;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            font-size: 85px;
+            animation: bounce 0.5s infinite alternate;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
         }
 
         .party-horn {
             display: inline-block;
             transform-origin: bottom left;
-            animation: blowHorn 0.3s infinite alternate;
+            animation: blowHorn 0.25s infinite alternate;
         }
 
         @keyframes bounce {
             0% { transform: translateY(0) rotate(-5deg); }
-            100% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(-15px) rotate(5deg); }
         }
 
         @keyframes blowHorn {
@@ -55,26 +63,27 @@
         }
 
         h1 {
-            font-size: 3rem;
-            color: #d63384;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            color: #7209b7;
+            font-weight: 800;
+            margin-bottom: 10px;
             opacity: 0;
             transform: scale(0.5);
             animation: popIn 1.2s forwards 0.5s;
         }
 
         p.subtitle {
-            font-size: 1.5rem;
-            color: #555;
+            font-size: 1.25rem;
+            color: #444;
             opacity: 0;
-            animation: fadeIn 1s forwards 1.5s;
-            margin-bottom: 30px;
+            animation: fadeIn 1s forwards 1.2s;
+            margin-bottom: 25px;
+            font-weight: 500;
         }
 
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.5); }
-            70% { transform: scale(1.1); }
+            70% { transform: scale(1.05); }
             100% { opacity: 1; transform: scale(1); }
         }
 
@@ -82,10 +91,118 @@
             to { opacity: 1; }
         }
 
+        /* Buttons */
+        .btn-action {
+            background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(247, 37, 133, 0.4);
+            transition: all 0.2s ease;
+            width: 100%;
+            z-index: 20;
+            margin-bottom: 15px;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(247, 37, 133, 0.6);
+        }
+
+        /* Geschenk öffnen Button (erscheint nach 3 Sekunden) */
+        #step-2 {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        #step-2.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Geschenk-Box (erst unsichtbar) */
+        .gift-box {
+            display: none;
+            background: #f8f9fa;
+            border: 3px solid #7209b7;
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 20px;
+            text-align: left;
+            animation: fadeIn 0.8s forwards;
+        }
+
+        .gift-box h3 {
+            color: #7209b7;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .gift-box p {
+            color: #333;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #7209b7;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.02);
+        }
+
         /* Kitschiger Herzchen-Hintergrund */
         .heart {
             position: absolute;
-            color: rgba(255, 105, 180, 0.6);
+            color: rgba(255, 105, 180, 0.5);
             font-size: 24px;
             animation: floatUp 4s linear infinite;
             z-index: 1;
@@ -112,39 +229,11 @@
             pointer-events: none;
             z-index: 5;
         }
-
-        /* Start-Button für Musik & Party */
-        .btn-party {
-            background-color: #ff4757;
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-            transition: all 0.2s ease;
-            opacity: 0;
-            animation: fadeIn 1s forwards 2s;
-            z-index: 20;
-        }
-
-        .btn-party:hover {
-            background-color: #ff6b81;
-            transform: scale(1.05);
-        }
     </style>
 </head>
 <body>
 
     <canvas id="confetti-canvas"></canvas>
-
-    <!-- Audio-Element für die Hintergrundmusik -->
-    <audio id="birthday-audio" loop>
-        <source src="https://actions.google.com/sounds/v1/ambiences/birthday_party.ogg" type="audio/ogg">
-        Dein Browser unterstützt kein Audio.
-    </audio>
 
     <div class="container">
         <!-- Person mit Tröte -->
@@ -152,10 +241,31 @@
             🥳<span class="party-horn">🎉</span>
         </div>
 
-        <h1>Alles Gute zum Geburtstag, Felix! ❤️</h1>
-        <p class="subtitle">Du bist der Beste! Auf ein weiteres tolles Jahr mit dir! 🥂✨</p>
+        <h1>Olls Guate zum Geburtstog, Felix! 🚀</h1>
+        <p class="subtitle">Du olter Sack! 🥂✨</p>
 
-        <button class="btn-party" onclick="startParty()">Musik & Party starten! 🎵</button>
+        <!-- Schritt 1: Konfetti-Party Button -->
+        <div id="step-1">
+            <button class="btn-action" onclick="startParty()">🎉 Konfetti-Party starten!</button>
+        </div>
+
+        <!-- Schritt 2: Geschenk öffnen Button (erscheint nach 3 Sekunden) -->
+        <div id="step-2">
+            <button class="btn-action" style="background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);" onclick="revealGift()">🎁 Do dein Geschenk öffnen!</button>
+        </div>
+
+        <!-- Das eigentliche Geschenk (erscheint nach Klick auf den zweiten Button) -->
+        <div id="gift-section" class="gift-box">
+            <h3>🏔️ Dein Geburtstagsgeschenk!🏔️</h3>
+            <p>Weil mir über <b>Silvester in Südtirol</b> sein, gibts a <b>romantisches Mittagessen im Gasthof Jäger in Sirmian!</b> 🥰🍽️<br><br>Suach dir direkt dein Lieblingstermin aus:</p>
+            
+            <div class="form-group">
+                <label for="wunsch-datum">Wunschtermin:</label>
+                <input type="date" id="wunsch-datum">
+            </div>
+
+            <button class="btn-submit" onclick="sendVoucher()">Termin per WhatsApp senden! 💌</button>
+        </div>
     </div>
 
     <script>
@@ -176,7 +286,7 @@
 
         setInterval(createHeart, 300);
 
-        // Konfetti-System
+        // Konfetti-System (10.000 Partikel)
         const canvas = document.getElementById('confetti-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -186,16 +296,16 @@
 
         function createConfetti() {
             particles = [];
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < 10000; i++) {
                 particles.push({
                     x: window.innerWidth / 2,
                     y: window.innerHeight / 2,
-                    vx: (Math.random() - 0.5) * 15,
-                    vy: (Math.random() - 0.5) * 15 - 5,
+                    vx: (Math.random() - 0.5) * 35,
+                    vy: (Math.random() - 0.5) * 35 - 10,
                     size: Math.random() * 8 + 4,
-                    color: ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#9b59b6', '#ff6b81'][Math.floor(Math.random() * 6)],
+                    color: ['#f72585', '#7209b7', '#3a0ca3', '#4cc9f0', '#ff9e00', '#ff0054', '#00f5d4'][Math.floor(Math.random() * 7)],
                     rotation: Math.random() * 360,
-                    vRot: (Math.random() - 0.5) * 10
+                    vRot: (Math.random() - 0.5) * 20
                 });
             }
         }
@@ -222,21 +332,45 @@
             requestAnimationFrame(updateConfetti);
         }
 
+        let hasClickedOnce = false;
+
+        // Party starten / Konfetti schmeißen (jederzeit wiederholbar)
         function startParty() {
             createConfetti();
 
-            const audio = document.getElementById('birthday-audio');
-            audio.play().catch(error => {
-                console.log("Audio konnte nicht gestartet werden:", error);
-            });
+            // Beim ersten Klick nach genau 3 Sekunden den zweiten Button einblenden
+            if (!hasClickedOnce) {
+                hasClickedOnce = true;
+                setTimeout(() => {
+                    document.getElementById('step-2').classList.add('show');
+                }, 3000); // 3 Sekunden Verzögerung
+            }
+        }
 
-            const btn = document.querySelector('.btn-party');
-            btn.innerHTML = "Party läuft! 🎈🥳";
-            btn.style.backgroundColor = "#2ed573";
+        // Das Geschenk aufdecken
+        function revealGift() {
+            createConfetti(); // Noch eine fette Extrarunde Konfetti beim Öffnen!
+            document.getElementById('gift-section').style.display = 'block';
+        }
+
+        // WhatsApp Nachricht generieren
+        function sendVoucher() {
+            const datum = document.getElementById('wunsch-datum').value;
+            
+            if (!datum) {
+                alert("Bitte wähle zuerst ein Datum aus! 😊");
+                return;
+            }
+
+            const deineHandynummer = "3398683172"; 
+            
+            const nachricht = encodeURIComponent(`Hoi! Ich honn mir a Termin für mein Geburtstogsgeschenk ausgsuacht. Mein Wunschtermin fürs das Mittogessen im Gasthof Jäger in Sirmian isch der ${datum}!`);
+            
+            const whatsappUrl = `https://wa.me/${deineHandynummer}?text=${nachricht}`;
+            window.open(whatsappUrl, '_blank');
         }
 
         window.onload = () => {
-            createConfetti();
             updateConfetti();
         };
 
